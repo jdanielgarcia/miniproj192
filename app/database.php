@@ -3,6 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "thereisnopass123";
+$databasen = "things";
 
 $conn = new mysqli($servername, $username, $password);
 
@@ -14,5 +15,17 @@ $sql = "CREATE DATABASE things";
 if($conn->query($sql) === TRUE){
 	echo "Database created";
 } else {
-	echo "Error creating database";
+	$conn->close();
+	$conn = new mysqli($servername, $username, $password, $databasen);
+}
+
+class ModelFactory{
+	protected $pubconn;
+	public function __construct(){
+		$pubconn = $this->conn;
+	}
+
+	public function buildObject(){
+
+	}
 }
